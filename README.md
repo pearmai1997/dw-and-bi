@@ -1,2 +1,1 @@
-# Data Warehouse and Business Intelligence
-
+# dw-and-bi
