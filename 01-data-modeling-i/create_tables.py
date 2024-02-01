@@ -13,6 +13,7 @@ table_drop_payload_push = "DROP TABLE IF EXISTS payload_push"
 table_drop_commits = "DROP TABLE IF EXISTS commits"
 table_drop_org = "DROP TABLE IF EXISTS org"
 
+
 table_create_actors = """
     CREATE TABLE IF NOT EXISTS actors (
         id int,
