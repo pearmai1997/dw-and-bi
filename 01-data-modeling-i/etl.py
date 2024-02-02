@@ -40,14 +40,6 @@ org_table_insert = ("""
     ON CONFLICT (id) DO NOTHING;
 """)
 
-events_table_insert = ("""
-    INSERT INTO events
-    (id, type, actor_id, repo_id, payload_push_id, public, create_at)
-    VALUES (%s, %s, %s, %s, %s, %s, %s)
-    ON CONFLICT (id) DO NOTHING;
- """)
-
-
 def get_files(filepath: str) -> List[str]:
     """
     Description: This function is responsible for listing the files in a directory
@@ -137,13 +129,13 @@ def process(cur, conn, filepath):
                     cur.execute(update_events1)
                     conn.commit() 
 
-                    for cmv in each["payload"]["commits"]:
+                    for val in each["payload"]["commits"]:
                         insert_commits_val = (
-                            cmv["sha"],
-                            cmv["author"]["email"],
-                            cmv["author"]["name"],
-                            cmv["message"],
-                            cmv["url"],
+                            val["sha"],
+                            val["author"]["email"],
+                            val["author"]["name"],
+                            val["message"],
+                            val["url"],
                             each["payload"]["push_id"]
                         )
                         cur.execute(commits_table_insert, insert_commits_val)
